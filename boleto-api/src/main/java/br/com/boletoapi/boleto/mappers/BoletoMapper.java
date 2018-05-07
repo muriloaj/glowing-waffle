@@ -11,4 +11,6 @@ public interface BoletoMapper {
 	
 	BoletoVO mapToVO(Boleto boleto);
 
+	Boleto mapToEntity(BoletoVO boletoVO);
+
 }

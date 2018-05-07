@@ -25,7 +25,7 @@ import br.com.boletoapi.boleto.mappers.BoletoMapper;
 import br.com.boletoapi.boleto.repositories.BoletoRepository;
 import br.com.boletoapi.boleto.services.exceptions.BankslipRecordNotFoundException;
 import br.com.boletoapi.boleto.services.exceptions.InvalidUUIDFormatException;
-import br.com.boletoapi.boleto.services.exceptions.NoBankslipProvidedException;
+import br.com.boletoapi.boleto.validator.BoletoValidator;
 import br.com.boletoapi.boleto.vos.BoletoVO;
 import br.com.boletoapi.commons.UUIDProvider;
 
@@ -45,17 +45,21 @@ public class BoletoServiceTest {
 	@MockBean
 	private UUIDProvider uuidProvider;
 	
+	@MockBean
+	private BoletoValidator boletoValidator;
+	
+	
 	@Test
 	public void create_calledWithNullVO_throws() {
-		NoBankslipProvidedException ex = null;
+		BoletoVO vo = mock(BoletoVO.class);
+		Boleto b = mock(Boleto.class);
+		when(boletoMapper.mapToEntity(vo)).thenReturn(b);
+					
+		boletoService.create(vo);
 		
-		try {
-			boletoService.create(null);
-		} catch(NoBankslipProvidedException e) { 
-			ex = e;
-		}
-		
-		assertNotNull(ex);
+		verify(boletoValidator).validate(vo);
+		verify(boletoMapper).mapToEntity(vo);
+		verify(boletoRepository).save(b);
 	}
 	
 	@Test

@@ -6,7 +6,7 @@ import br.com.boletoapi.boleto.vos.BoletoVO;
 
 public interface BoletoService {
 
-	BoletoVO create(BoletoVO boletoVO);
+	void create(BoletoVO boletoVO);
 
 	List<BoletoVO> listAll();
 

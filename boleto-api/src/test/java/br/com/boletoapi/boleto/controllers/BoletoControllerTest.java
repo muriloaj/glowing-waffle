@@ -43,7 +43,7 @@ public class BoletoControllerTest {
 	@Test
 	public void create_called_returnsStatus400() {
 		BoletoVO boletoVO = mock(BoletoVO.class);
-		when(boletoService.create(boletoVO)).thenThrow(NoBankslipProvidedException.class);
+		doThrow(NoBankslipProvidedException.class).when(boletoService).create(boletoVO);
 		
 		ResponseEntity response = boletoController.create(boletoVO);
 		
@@ -57,7 +57,7 @@ public class BoletoControllerTest {
 	@Test 
 	public void create_called_returnsStatus422() {
 		BoletoVO boletoVO = mock(BoletoVO.class);
-		when(boletoService.create(boletoVO)).thenThrow(RequiredInformationMissingException.class);
+		doThrow(RequiredInformationMissingException.class).when(boletoService).create(boletoVO);
 		
 		ResponseEntity response = boletoController.create(boletoVO);
 		

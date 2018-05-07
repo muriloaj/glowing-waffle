@@ -13,7 +13,7 @@ import br.com.boletoapi.boleto.mappers.BoletoMapper;
 import br.com.boletoapi.boleto.repositories.BoletoRepository;
 import br.com.boletoapi.boleto.services.exceptions.BankslipRecordNotFoundException;
 import br.com.boletoapi.boleto.services.exceptions.InvalidUUIDFormatException;
-import br.com.boletoapi.boleto.services.exceptions.NoBankslipProvidedException;
+import br.com.boletoapi.boleto.validator.BoletoValidator;
 import br.com.boletoapi.boleto.vos.BoletoVO;
 import br.com.boletoapi.commons.UUIDProvider;
 
@@ -28,14 +28,15 @@ public class DefaultBoletoService implements BoletoService {
 	
 	@Autowired
 	private UUIDProvider uuidProvider;
+	
+	@Autowired
+	private BoletoValidator boletoValidator;
 
 	@Override
-	public BoletoVO create(BoletoVO boletoVO) {
-		if(boletoVO == null) {
-			throw new NoBankslipProvidedException();
-		}
-			
-		return null;
+	public void create(BoletoVO boletoVO) {
+		boletoValidator.validate(boletoVO);
+		Boleto boleto = boletoMapper.mapToEntity(boletoVO);
+		boletoRepository.save(boleto);
 	}
 
 	@Override
