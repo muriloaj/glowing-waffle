@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.boletoapi.boleto.services.BoletoService;
 import br.com.boletoapi.boleto.services.exceptions.BankslipRecordNotFoundException;
 import br.com.boletoapi.boleto.services.exceptions.InvalidUUIDFormatException;
+import br.com.boletoapi.boleto.services.exceptions.NoBankslipProvidedException;
 import br.com.boletoapi.boleto.services.exceptions.RequiredInformationMissingException;
 import br.com.boletoapi.boleto.vos.BoletoVO;
 

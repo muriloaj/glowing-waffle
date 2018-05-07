@@ -1,16 +1,21 @@
-package br.com.boletoapi.boleto.vos;
+package br.com.boletoapi.boleto.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 
+import javax.persistence.Entity;
+
 import br.com.boletoapi.boleto.enums.BoletoStatus;
 
-public class BoletoVO {
+@Entity
+public class Boleto implements Serializable {
+	
+	private static final long serialVersionUID = 3013317892962750034L;
 	
 	private UUID id;
 	private Date dueDate;
 	private Integer totalInCents;
-	private Integer fine;
 	private BoletoStatus status;
 	private String customer;
 	
@@ -33,12 +38,6 @@ public class BoletoVO {
 	public void setTotalInCents(Integer totalInCents) {
 		this.totalInCents = totalInCents;
 	}
-	public Integer getFine() {
-		return fine;
-	}
-	public void setFine(Integer fine) {
-		this.fine = fine;
-	}
 	public BoletoStatus getStatus() {
 		return status;
 	}
@@ -53,8 +52,8 @@ public class BoletoVO {
 	}
 	@Override
 	public String toString() {
-		return "BoletoVO [id=" + id + ", dueDate=" + dueDate + ", totalInCents=" + totalInCents + ", fine=" + fine
-				+ ", status=" + status + ", customer=" + customer + "]";
+		return "Boleto [id=" + id + ", dueDate=" + dueDate + ", totalInCents=" + totalInCents + ", status=" + status
+				+ ", customer=" + customer + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -63,16 +62,15 @@ public class BoletoVO {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof BoletoVO ))
+		if (!(obj instanceof Boleto ))
 			return false;
-		BoletoVO other = (BoletoVO) obj;
+		Boleto other = (Boleto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -82,5 +80,6 @@ public class BoletoVO {
 	}
 	
 	
-
+	
+	
 }

@@ -1,4 +1,4 @@
-package br.com.boletoapi.boleto.controllers;
+package br.com.boletoapi.boleto.services.exceptions;
 
 public class NoBankslipProvidedException extends RuntimeException {
 
