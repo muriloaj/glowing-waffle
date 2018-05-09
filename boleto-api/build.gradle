@@ -33,3 +33,9 @@ dependencies {
 	testCompile group: 'com.jcabi', name: 'jcabi-matchers', version: '1.4'
 	testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '2.4.6'
 }
+
+tasks.withType(JavaExec) {
+    if (System.getProperty('DEBUG', 'false') == 'true') {
+        jvmArgs '-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9099'
+    }
+}

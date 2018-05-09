@@ -20,7 +20,7 @@ import br.com.boletoapi.boleto.vos.BoletoVO;
 
 
 @RestController(value = "bankslipController")
-@RequestMapping("/bankslips")
+@RequestMapping("/rest/bankslips")
 @SuppressWarnings("rawtypes")
 public class BoletoController {
 	

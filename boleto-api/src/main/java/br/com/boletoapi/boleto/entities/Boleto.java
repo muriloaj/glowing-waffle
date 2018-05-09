@@ -5,14 +5,18 @@ import java.sql.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.boletoapi.boleto.enums.BoletoStatus;
 
 @Entity
+@Table
 public class Boleto implements Serializable {
 	
 	private static final long serialVersionUID = 3013317892962750034L;
 	
+	@Id
 	private UUID id;
 	private Date dueDate;
 	private Integer totalInCents;

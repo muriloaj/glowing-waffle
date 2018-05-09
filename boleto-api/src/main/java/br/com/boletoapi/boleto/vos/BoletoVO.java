@@ -3,14 +3,19 @@ package br.com.boletoapi.boleto.vos;
 import java.sql.Date;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import br.com.boletoapi.boleto.enums.BoletoStatus;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class BoletoVO {
 	
 	private UUID id;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dueDate;
 	private Integer totalInCents;
-	private Integer fine;
+	private int fine;
 	private BoletoStatus status;
 	private String customer;
 	
