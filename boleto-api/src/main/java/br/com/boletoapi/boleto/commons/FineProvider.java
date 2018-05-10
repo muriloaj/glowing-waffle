@@ -6,6 +6,6 @@ public interface FineProvider {
 	
 	boolean isFinable(Date DueDate);
 	
-	int calculate(int amount, Date DueDate);
+	double calculate(int amount, Date DueDate);
 
 }

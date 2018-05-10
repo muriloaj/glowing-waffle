@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.boletoapi.boleto.commons.FineProvider;
 import br.com.boletoapi.boleto.entities.Boleto;
+import br.com.boletoapi.boleto.enums.BoletoStatus;
 import br.com.boletoapi.boleto.vos.BoletoVO;
 import br.com.boletoapi.commons.UUIDProvider;
 
@@ -36,7 +37,7 @@ public class DefaultBoletoMapper implements BoletoMapper {
 		vo.setDueDate(boleto.getDueDate());
 		vo.setStatus(boleto.getStatus());
 		vo.setTotalInCents(boleto.getTotalInCents());
-		if(fineProvider.isFinable(boleto.getDueDate()))
+		if(boleto.getStatus() == BoletoStatus.PENDING && fineProvider.isFinable(boleto.getDueDate()))
 			vo.setFine(fineProvider.calculate(boleto.getTotalInCents(), boleto.getDueDate()));
 		
 		return vo;

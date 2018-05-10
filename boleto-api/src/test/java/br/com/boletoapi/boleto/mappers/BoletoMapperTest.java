@@ -49,7 +49,7 @@ public class BoletoMapperTest {
 		b.setStatus(BoletoStatus.PENDING);
 		b.setTotalInCents(5000);
 		when(fineProvider.isFinable(b.getDueDate())).thenReturn(true);
-		when(fineProvider.calculate(b.getTotalInCents(), b.getDueDate())).thenReturn(100);
+		when(fineProvider.calculate(b.getTotalInCents(), b.getDueDate())).thenReturn(100.0);
 		
 		BoletoVO vo = boletoMapper.mapToVO(b);
 		

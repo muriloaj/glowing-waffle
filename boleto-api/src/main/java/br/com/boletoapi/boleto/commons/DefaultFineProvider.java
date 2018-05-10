@@ -12,11 +12,11 @@ public class DefaultFineProvider implements FineProvider {
 	@Override
 	public boolean isFinable(Date dueDate) {
 		Date endOfDay = getEndOfDay();
-		return endOfDay.compareTo(dueDate)  < 0 ? true : false; 
+		return dueDate.before(endOfDay); 
 	}
 
 	@Override
-	public int calculate(int amount, Date dueDate) {
+	public double calculate(int amount, Date dueDate) {
 		Date current = getBeginOfDay();
 		
 		long diff = current.getTime() - dueDate.getTime();
@@ -30,7 +30,7 @@ public class DefaultFineProvider implements FineProvider {
 			rate = 1.0 / 100.0;
 		}
 		
-		return (int) (amount * rate * diffInDays);
+		return amount * rate * diffInDays;
 	}
 
 	
@@ -47,7 +47,7 @@ public class DefaultFineProvider implements FineProvider {
 	    int year = calendar.get(Calendar.YEAR);
 	    int month = calendar.get(Calendar.MONTH);
 	    int day = calendar.get(Calendar.DATE);
-	    calendar.set(year, month, day, 23, 59, 59);
+	    calendar.set(year, month, day, 0, 0, 0);
 	    return calendar.getTime();
 	}
 }

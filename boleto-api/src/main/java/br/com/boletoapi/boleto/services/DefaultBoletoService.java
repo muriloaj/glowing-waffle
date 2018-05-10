@@ -62,29 +62,22 @@ public class DefaultBoletoService implements BoletoService {
 
 	@Override
 	public void pay(String id) {
-		if(uuidProvider.isValid(id)) {
-			UUID uuid = uuidProvider.fromString(id);
-			Optional<Boleto> bo = boletoRepository.findById(uuid);
-			if(bo.isPresent()) {
-				Boleto b = bo.get();
-				b.setStatus(BoletoStatus.PAID);
-				boletoRepository.save(b);
-			} else {
-				throw new BankslipRecordNotFoundException();
-			}
-		} else {
-			throw new InvalidUUIDFormatException();
-		}
+		updateStatus(id, BoletoStatus.PAID);
 	}
 
 	@Override
 	public void cancel(String id) {
+		updateStatus(id, BoletoStatus.CANCELED);
+	}
+
+	
+	private void updateStatus(String id, BoletoStatus status) {
 		if(uuidProvider.isValid(id)) {
 			UUID uuid = uuidProvider.fromString(id);
 			Optional<Boleto> bo = boletoRepository.findById(uuid);
 			if(bo.isPresent()) {
 				Boleto b = bo.get();
-				b.setStatus(BoletoStatus.CANCELED);
+				b.setStatus(status);
 				boletoRepository.save(b);
 			} else {
 				throw new BankslipRecordNotFoundException();
@@ -93,5 +86,4 @@ public class DefaultBoletoService implements BoletoService {
 			throw new InvalidUUIDFormatException();
 		}
 	}
-
 }

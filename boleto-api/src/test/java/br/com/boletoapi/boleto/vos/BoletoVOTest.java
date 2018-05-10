@@ -1,6 +1,7 @@
 package br.com.boletoapi.boleto.vos;
 
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -50,11 +51,11 @@ public class BoletoVOTest {
 	
 	@Test
 	public void fineTest() {
-		Integer fine = 100;
+		double fine = 100.0;
 		
 		boletoVO.setFine(fine);
 		
-		assertSame(fine, boletoVO.getFine());
+		assertTrue(fine == boletoVO.getFine());
 	}
 	
 	@Test

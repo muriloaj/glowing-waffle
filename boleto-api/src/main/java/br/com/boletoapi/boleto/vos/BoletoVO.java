@@ -12,10 +12,10 @@ import br.com.boletoapi.boleto.enums.BoletoStatus;
 public class BoletoVO {
 	
 	private UUID id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt_BR")
 	private Date dueDate;
 	private Integer totalInCents;
-	private int fine;
+	private double fine;
 	private BoletoStatus status;
 	private String customer;
 	
@@ -38,10 +38,10 @@ public class BoletoVO {
 	public void setTotalInCents(Integer totalInCents) {
 		this.totalInCents = totalInCents;
 	}
-	public Integer getFine() {
+	public double getFine() {
 		return fine;
 	}
-	public void setFine(Integer fine) {
+	public void setFine(double fine) {
 		this.fine = fine;
 	}
 	public BoletoStatus getStatus() {
