@@ -3,6 +3,7 @@
 ## Cloning Repository:
   git clone https://github.com/guilhermebotossi/glowing-waffle.git
 
+
 ## Java
   -Version 1.8<br>
   -The JAVA_HOME enviroment variable, must be defined<br>
